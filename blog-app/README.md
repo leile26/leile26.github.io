@@ -2,6 +2,44 @@
 
 This folder contains the Astro-based blog source for Lei Le's website.
 
+## Cheatsheet
+
+### Start a draft
+
+```bash
+cd blog-app
+./new-draft.sh my-post
+```
+
+### Publish a draft
+
+```bash
+./publish-post.sh my-post
+./push-blog.sh "Publish my-post"
+```
+
+### Unpublish a post
+
+```bash
+./unpublish-post.sh my-post
+./push-blog.sh "Unpublish my-post"
+```
+
+### Delete a post entirely
+
+```bash
+./remove-post.sh my-post
+./push-blog.sh "Remove my-post"
+```
+
+### Preview locally
+
+```bash
+npm run dev
+```
+
+---
+
 ## What this folder is for
 
 - `blog-app/` = blog source code and writing workflow
