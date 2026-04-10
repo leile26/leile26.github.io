@@ -20,7 +20,27 @@ npm run dev
 
 This repo includes a GitHub Actions workflow that automatically rebuilds the Astro blog and syncs the generated output into the root `blog/` directory on pushes that touch `blog-app/`.
 
-That means the manual sync script is still useful locally, but normal blog-source updates pushed to GitHub can also trigger server-side sync.
+### When you do **not** need to run `./scripts-sync-blog.sh`
+
+If you changed blog source files and plan to push to GitHub anyway, the workflow can handle sync for you after push. Typical examples:
+
+- `src/pages/blog/*.md`
+- `src/pages/blog/index.astro`
+- `src/layouts/BlogLayout.astro`
+- other files under `blog-app/`
+
+### When you **should** still run `./scripts-sync-blog.sh`
+
+Run it locally when you want to:
+
+- preview the generated result before pushing
+- verify the final `blog/` output on your machine
+- make sure root `blog/` files are updated immediately in your working tree
+
+In short:
+
+- **push-first workflow** → GitHub Action can sync for you
+- **preview-first workflow** → run `./scripts-sync-blog.sh` locally
 
 ## Post template
 
