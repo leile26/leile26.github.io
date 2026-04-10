@@ -89,7 +89,11 @@ Drafts are intentionally excluded from the published blog. A simple workflow is:
 npm run dev
 ```
 
-3. If you decide it is not ready yet, move it back to `drafts/`
+3. If you decide it is not ready yet, move it back to `drafts/`:
+
+```bash
+./unpublish-post.sh your-post-slug
+```
 
 This keeps the publishing logic simple and avoids accidental public release.
 
