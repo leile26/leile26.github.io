@@ -71,6 +71,28 @@ That moves the draft into:
 src/pages/blog/your-post-slug.md
 ```
 
+List current drafts with:
+
+```bash
+./list-drafts.sh
+```
+
+## Previewing a draft
+
+Drafts are intentionally excluded from the published blog. A simple workflow is:
+
+1. Keep writing in `drafts/your-post-slug.md`
+2. When you want to preview it in the real blog locally, publish it:
+
+```bash
+./publish-post.sh your-post-slug
+npm run dev
+```
+
+3. If you decide it is not ready yet, move it back to `drafts/`
+
+This keeps the publishing logic simple and avoids accidental public release.
+
 Open:
 - http://127.0.0.1:4321/blog/
 - http://127.0.0.1:4321/blog/math-and-markdown-test/
