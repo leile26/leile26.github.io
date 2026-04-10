@@ -138,6 +138,21 @@ npm run dev
 
 This keeps the publishing logic simple and avoids accidental public release.
 
+## Removing a post entirely
+
+If you want to remove a post instead of converting it back into a draft, use:
+
+```bash
+./remove-post.sh your-post-slug
+```
+
+This deletes the post from both locations if present:
+
+- `src/pages/blog/your-post-slug.md`
+- `drafts/your-post-slug.md`
+
+After that, push your changes so the published blog updates.
+
 Open:
 - http://127.0.0.1:4321/blog/
 - http://127.0.0.1:4321/blog/math-and-markdown-test/
