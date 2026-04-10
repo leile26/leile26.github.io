@@ -16,6 +16,12 @@ npm install
 npm run dev
 ```
 
+## Automatic blog sync on GitHub
+
+This repo includes a GitHub Actions workflow that automatically rebuilds the Astro blog and syncs the generated output into the root `blog/` directory on pushes that touch `blog-app/`.
+
+That means the manual sync script is still useful locally, but normal blog-source updates pushed to GitHub can also trigger server-side sync.
+
 ## Post template
 
 A reusable markdown post template is available at:

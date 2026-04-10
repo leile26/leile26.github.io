@@ -1,0 +1,56 @@
+name: Sync Astro blog
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'blog-app/**'
+      - '.github/workflows/sync-blog.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-blog:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: blog-app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: blog-app
+        run: npm ci
+
+      - name: Build Astro blog
+        working-directory: blog-app
+        run: npm run build
+
+      - name: Sync generated blog output
+        run: |
+          rm -rf blog
+          mkdir -p blog
+          cp -R blog-app/dist/blog/. blog/
+
+      - name: Commit synced blog output
+        run: |
+          if git diff --quiet -- blog; then
+            echo "No blog changes to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add blog
+          git commit -m "Sync generated blog output [skip ci]"
+          git push
