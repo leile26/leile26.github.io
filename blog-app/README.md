@@ -42,6 +42,21 @@ In short:
 - **push-first workflow** → GitHub Action can sync for you
 - **preview-first workflow** → run `./scripts-sync-blog.sh` locally
 
+## Safer push helper
+
+Because GitHub Actions may add an automatic follow-up commit after you push blog source changes, this repo also includes:
+
+```bash
+./push-blog.sh "your commit message"
+```
+
+It does the common sequence for you:
+
+1. `git add .`
+2. `git commit -m ...`
+3. `git pull --rebase origin master`
+4. `git push`
+
 ## Post template
 
 A reusable markdown post template is available at:
