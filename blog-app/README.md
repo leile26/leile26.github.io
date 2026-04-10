@@ -16,6 +16,31 @@ npm install
 npm run dev
 ```
 
+## Post template
+
+A reusable markdown post template is available at:
+
+```bash
+blog-app/templates/post-template.md
+```
+
+Copy it into `src/pages/blog/your-post-name.md` when you want to publish a new post.
+
+## New post helper
+
+You can also create a new post from the template with:
+
+```bash
+cd blog-app
+./new-post.sh your-post-slug
+```
+
+This creates:
+
+```bash
+src/pages/blog/your-post-slug.md
+```
+
 Open:
 - http://127.0.0.1:4321/blog/
 - http://127.0.0.1:4321/blog/math-and-markdown-test/
