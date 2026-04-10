@@ -1,0 +1,7 @@
+.DS_Store
+.bundle/
+blog-app/node_modules/
+blog-app/dist/
+blog-app/.astro/
+blog-app/.git/
+blog-app/.vscode/
