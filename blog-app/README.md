@@ -41,6 +41,36 @@ This creates:
 src/pages/blog/your-post-slug.md
 ```
 
+## Draft workflow
+
+Create an unpublished draft with:
+
+```bash
+cd blog-app
+./new-draft.sh your-post-slug
+```
+
+This creates:
+
+```bash
+drafts/your-post-slug.md
+```
+
+Drafts are not published because only `src/pages/blog/*.md` is scanned.
+
+When you are ready to publish:
+
+```bash
+./publish-post.sh your-post-slug
+./scripts-sync-blog.sh
+```
+
+That moves the draft into:
+
+```bash
+src/pages/blog/your-post-slug.md
+```
+
 Open:
 - http://127.0.0.1:4321/blog/
 - http://127.0.0.1:4321/blog/math-and-markdown-test/
