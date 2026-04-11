@@ -97,6 +97,7 @@ For bilingual writing, the recommended pattern is:
 
 The archive currently treats English as the primary list and shows posts with `lang: en`.
 Chinese versions are still published as separate pages and linked from the post page.
+Language switches are shown only when the alternate file actually exists.
 
 ## Drafts
 Drafts live here:
@@ -251,6 +252,14 @@ templates/post-template.zh.md
 The helper scripts use the English template automatically.
 If you want a bilingual pair, create the English post first, then copy the Chinese template and set matching translation fields.
 
+By default, templates now use:
+
+```yaml
+alternate: ""
+```
+
+This makes it safe to publish English first and add the Chinese version later.
+
 ---
 
 # Local preview vs GitHub automatic sync
@@ -343,6 +352,16 @@ Example files:
 - `src/pages/blog/my-post.zh.md`
 
 Recommended frontmatter pattern:
+
+English first, before Chinese exists yet:
+
+```yaml
+lang: en
+translationKey: my-post
+alternate: ""
+```
+
+After Chinese is published:
 
 English:
 

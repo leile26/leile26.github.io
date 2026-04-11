@@ -15,6 +15,10 @@ const posts = fs
     const raw = fs.readFileSync(fullPath, 'utf-8');
     const { data } = matter(raw);
     const slug = file.replace(/\.md$/, '');
+    const alternate = typeof data.alternate === 'string' ? data.alternate.trim() : '';
+    const alternateSlug = alternate ? alternate.replace(/^\/blog\//, '').replace(/\/$/, '') : '';
+    const hasAlternate = alternateSlug ? fs.existsSync(path.join(blogDir, `${alternateSlug}.md`)) : false;
+
     return {
       title: data.title ?? slug,
       url: `/blog/${slug}/`,
@@ -22,7 +26,8 @@ const posts = fs
       tags: Array.isArray(data.tags) ? data.tags : [],
       description: data.description ?? '',
       lang: data.lang ?? 'en',
-      alternate: data.alternate ?? '',
+      alternate,
+      hasAlternate,
     };
   })
   .filter((post) => post.lang === 'en')
@@ -106,7 +111,7 @@ const posts = fs
             {post.tags.length ? ` · ${post.tags.join(' · ')}` : ''}
           </div>
           <p>{post.description}</p>
-          {post.alternate && <div class="lang-note">Chinese version available</div>}
+          {post.hasAlternate && <div class="lang-note">Chinese version available</div>}
         </div>
       )) : (
         <div class="card">

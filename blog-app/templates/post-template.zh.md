@@ -9,7 +9,7 @@ tags:
   - notes
 lang: zh
 translationKey: your-post-slug
-alternate: /blog/your-post-slug/
+alternate: ""
 ---
 
 先写一小段开场，说明这篇文章在讲什么，以及为什么值得写下来。

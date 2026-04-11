@@ -9,7 +9,7 @@ tags:
   - notes
 lang: en
 translationKey: your-post-slug
-alternate: /blog/your-post-slug.zh/
+alternate: ""
 ---
 
 Write a short opening paragraph here to explain what the post is about and why it matters.
