@@ -2,12 +2,17 @@
 set -euo pipefail
 
 if [ $# -lt 1 ]; then
-  echo "Usage: ./new-post.sh <slug> [--bilingual]"
+  echo "Usage: ./new-post.sh <slug> [-b|--bilingual]"
   exit 1
 fi
 
 SLUG="$1"
 BILINGUAL="${2:-}"
+
+if [ -n "$BILINGUAL" ] && [ "$BILINGUAL" != "--bilingual" ] && [ "$BILINGUAL" != "-b" ]; then
+  echo "Usage: ./new-post.sh <slug> [-b|--bilingual]"
+  exit 1
+fi
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 EN_TEMPLATE="$ROOT_DIR/templates/post-template.md"
 ZH_TEMPLATE="$ROOT_DIR/templates/post-template.zh.md"
@@ -33,7 +38,7 @@ PY
 
 echo "Created: $EN_TARGET"
 
-if [ "$BILINGUAL" = "--bilingual" ]; then
+if [ "$BILINGUAL" = "--bilingual" ] || [ "$BILINGUAL" = "-b" ]; then
   if [ -f "$ZH_TARGET" ]; then
     echo "Chinese post already exists: $ZH_TARGET"
     exit 1

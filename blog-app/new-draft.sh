@@ -2,12 +2,17 @@
 set -euo pipefail
 
 if [ $# -lt 1 ]; then
-  echo "Usage: ./new-draft.sh <slug> [--bilingual]"
+  echo "Usage: ./new-draft.sh <slug> [-b|--bilingual]"
   exit 1
 fi
 
 SLUG="$1"
 BILINGUAL="${2:-}"
+
+if [ -n "$BILINGUAL" ] && [ "$BILINGUAL" != "--bilingual" ] && [ "$BILINGUAL" != "-b" ]; then
+  echo "Usage: ./new-draft.sh <slug> [-b|--bilingual]"
+  exit 1
+fi
 ROOT_DIR="$(cd "$(dirname "$0")" && pwd)"
 DRAFT_DIR="$ROOT_DIR/drafts"
 EN_TEMPLATE="$ROOT_DIR/templates/post-template.md"
@@ -36,7 +41,7 @@ PY
 
 echo "Created draft: $EN_TARGET"
 
-if [ "$BILINGUAL" = "--bilingual" ]; then
+if [ "$BILINGUAL" = "--bilingual" ] || [ "$BILINGUAL" = "-b" ]; then
   if [ -f "$ZH_TARGET" ]; then
     echo "Chinese draft already exists: $ZH_TARGET"
     exit 1

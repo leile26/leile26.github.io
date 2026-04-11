@@ -14,7 +14,7 @@ cd blog-app
 ### Start a bilingual draft pair
 
 ```bash
-./new-draft.sh my-post --bilingual
+./new-draft.sh my-post -b
 ```
 
 ### Publish a draft
@@ -127,7 +127,7 @@ drafts/your-post-slug.md
 If you want both English and Chinese draft files at once:
 
 ```bash
-./new-draft.sh your-post-slug --bilingual
+./new-draft.sh your-post-slug -b
 ```
 
 This creates:
@@ -227,7 +227,7 @@ src/pages/blog/your-post-slug.md
 For a bilingual published pair:
 
 ```bash
-./new-post.sh your-post-slug --bilingual
+./new-post.sh your-post-slug -b
 ```
 
 This creates:
