@@ -11,11 +11,25 @@ cd blog-app
 ./new-draft.sh my-post
 ```
 
+### Start a bilingual draft pair
+
+```bash
+./new-draft.sh my-post --bilingual
+```
+
 ### Publish a draft
 
 ```bash
 ./publish-post.sh my-post
 ./push-blog.sh "Publish my-post"
+```
+
+For a bilingual pair, publish both:
+
+```bash
+./publish-post.sh my-post
+./publish-post.sh my-post.zh
+./push-blog.sh "Publish bilingual my-post"
 ```
 
 ### Unpublish a post
@@ -110,6 +124,19 @@ This creates:
 drafts/your-post-slug.md
 ```
 
+If you want both English and Chinese draft files at once:
+
+```bash
+./new-draft.sh your-post-slug --bilingual
+```
+
+This creates:
+
+```bash
+drafts/your-post-slug.md
+drafts/your-post-slug.zh.md
+```
+
 Use this when you want to start writing but do **not** want the post to appear publicly yet.
 
 ---
@@ -195,6 +222,19 @@ This creates:
 
 ```bash
 src/pages/blog/your-post-slug.md
+```
+
+For a bilingual published pair:
+
+```bash
+./new-post.sh your-post-slug --bilingual
+```
+
+This creates:
+
+```bash
+src/pages/blog/your-post-slug.md
+src/pages/blog/your-post-slug.zh.md
 ```
 
 ---
