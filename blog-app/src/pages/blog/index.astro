@@ -21,8 +21,11 @@ const posts = fs
       pubDate: data.pubDate ? new Date(data.pubDate) : null,
       tags: Array.isArray(data.tags) ? data.tags : [],
       description: data.description ?? '',
+      lang: data.lang ?? 'en',
+      alternate: data.alternate ?? '',
     };
   })
+  .filter((post) => post.lang === 'en')
   .sort((a, b) => (b.pubDate?.getTime() ?? 0) - (a.pubDate?.getTime() ?? 0));
 ---
 
@@ -80,6 +83,7 @@ const posts = fs
       .hero h1 { font-weight: 800; }
       .card { margin-bottom: 18px; }
       .meta { color: var(--muted); font-size: 14px; }
+      .lang-note { margin-top: 10px; color: var(--muted); font-size: 14px; }
       .card p, .hero p { color: #334155; }
       a { color: var(--primary); text-decoration: none; }
       a:hover { color: var(--primary-strong); }
@@ -102,6 +106,7 @@ const posts = fs
             {post.tags.length ? ` · ${post.tags.join(' · ')}` : ''}
           </div>
           <p>{post.description}</p>
+          {post.alternate && <div class="lang-note">Chinese version available</div>}
         </div>
       )) : (
         <div class="card">

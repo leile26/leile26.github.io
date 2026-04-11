@@ -74,7 +74,15 @@ Published posts live here:
 src/pages/blog/
 ```
 
-Anything under `src/pages/blog/*.md` is treated as a real blog post and will appear in the blog archive.
+Anything under `src/pages/blog/*.md` is treated as a real blog post.
+
+For bilingual writing, the recommended pattern is:
+
+- `my-post.md` for English
+- `my-post.zh.md` for Chinese
+
+The archive currently treats English as the primary list and shows posts with `lang: en`.
+Chinese versions are still published as separate pages and linked from the post page.
 
 ## Drafts
 Drafts live here:
@@ -193,13 +201,15 @@ src/pages/blog/your-post-slug.md
 
 # Template
 
-The reusable post template is here:
+Reusable post templates are here:
 
 ```bash
 templates/post-template.md
+templates/post-template.zh.md
 ```
 
-The helper scripts use this template automatically.
+The helper scripts use the English template automatically.
+If you want a bilingual pair, create the English post first, then copy the Chinese template and set matching translation fields.
 
 ---
 
@@ -285,6 +295,33 @@ cd blog-app
 
 ---
 
+## Workflow E: publish an English post with a Chinese version
+
+Example files:
+
+- `src/pages/blog/my-post.md`
+- `src/pages/blog/my-post.zh.md`
+
+Recommended frontmatter pattern:
+
+English:
+
+```yaml
+lang: en
+translationKey: my-post
+alternate: /blog/my-post.zh/
+```
+
+Chinese:
+
+```yaml
+lang: zh
+translationKey: my-post
+alternate: /blog/my-post/
+```
+
+---
+
 # Safer push helper
 
 Use this helper when pushing blog-related changes:
@@ -323,7 +360,8 @@ blog-app/dist/
 ## Content
 - `src/pages/blog/` — published post source
 - `drafts/` — unpublished drafts
-- `templates/post-template.md` — reusable markdown template
+- `templates/post-template.md` — English markdown template
+- `templates/post-template.zh.md` — Chinese markdown template
 
 ## Scripts
 - `new-draft.sh` — create a draft
