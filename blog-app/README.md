@@ -368,7 +368,7 @@ English:
 ```yaml
 lang: en
 translationKey: my-post
-alternate: /blog/my-post.zh/
+alternate: "/blog/my-post.zh/"
 ```
 
 Chinese:
@@ -376,7 +376,13 @@ Chinese:
 ```yaml
 lang: zh
 translationKey: my-post
-alternate: /blog/my-post/
+alternate: "/blog/my-post/"
+```
+
+You can also fill these automatically with:
+
+```bash
+./link-translations.sh my-post
 ```
 
 ---
@@ -431,6 +437,7 @@ blog-app/dist/
 - `new-post.sh` — create a published post directly
 - `scripts-sync-blog.sh` — build + sync generated blog output to root `blog/`
 - `push-blog.sh` — safer add/commit/rebase/push helper
+- `link-translations.sh` — connect English/Chinese post pairs with matching alternate links
 
 ---
 
