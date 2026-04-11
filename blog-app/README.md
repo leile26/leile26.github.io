@@ -351,7 +351,24 @@ Example files:
 - `src/pages/blog/my-post.md`
 - `src/pages/blog/my-post.zh.md`
 
-Recommended frontmatter pattern:
+### Recommended bilingual model
+
+Use English as the primary version and Chinese as the companion version.
+
+That means:
+
+- the main archive lists the English post
+- the Chinese version is published as its own page
+- the post page can link to the other language when both files exist
+
+### Naming convention
+
+Use the same slug base for both versions:
+
+- English: `my-post.md`
+- Chinese: `my-post.zh.md`
+
+### Recommended frontmatter pattern
 
 English first, before Chinese exists yet:
 
@@ -379,11 +396,62 @@ translationKey: my-post
 alternate: "/blog/my-post/"
 ```
 
-You can also fill these automatically with:
+### Typical bilingual workflow
+
+#### Option 1: start both drafts at once
 
 ```bash
-./link-translations.sh my-post
+./new-draft.sh my-post -b
 ```
+
+This creates:
+
+- `drafts/my-post.md`
+- `drafts/my-post.zh.md`
+
+#### Option 2: publish English first
+
+If the English version is ready first, publish only English:
+
+```bash
+./publish-post.sh my-post
+./push-blog.sh "Publish English version of my-post"
+```
+
+At this stage:
+
+- the English page is public
+- the Chinese page is still a draft
+- no language switch is shown unless the Chinese file actually exists in `src/pages/blog/`
+
+#### Option 3: publish Chinese later
+
+When the Chinese version is ready:
+
+```bash
+./publish-post.sh my-post.zh
+./link-translations.sh my-post
+./push-blog.sh "Publish Chinese version of my-post"
+```
+
+`./link-translations.sh my-post` automatically fills the matching `alternate` links in both files.
+
+### What appears in the archive
+
+The main archive currently shows English posts only:
+
+- posts with `lang: en` are listed in `/blog/`
+- Chinese posts are still published and reachable directly
+- if a Chinese version exists, the English post can show that a Chinese version is available
+
+### When to use `link-translations.sh`
+
+Use it only after both files have been published into:
+
+- `src/pages/blog/my-post.md`
+- `src/pages/blog/my-post.zh.md`
+
+That is the safest moment to connect the two language versions.
 
 ---
 
