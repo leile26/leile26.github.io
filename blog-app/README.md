@@ -291,6 +291,8 @@ Run it when you want to:
 
 If your shell reports `npm: command not found`, the script now also tries `pnpm` and `yarn`, and prints a clearer PATH-related error if no package manager is available.
 
+If your shell reports `sh: astro: command not found`, that usually means `blog-app/node_modules` is missing. The sync script now tries to install dependencies automatically before building when the local Astro binary is absent.
+
 ---
 
 ## When you do not have to run it manually

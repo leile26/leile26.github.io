@@ -10,11 +10,17 @@ TARGET_BLOG_DIR="$ROOT_DIR/blog"
 export PATH="/usr/local/bin:/opt/homebrew/bin:/usr/local/opt/node@22/bin:$PATH"
 
 if command -v npm >/dev/null 2>&1; then
+  PKG_MGR="npm"
   BUILD_CMD=(npm run build)
+  INSTALL_CMD=(npm install)
 elif command -v pnpm >/dev/null 2>&1; then
+  PKG_MGR="pnpm"
   BUILD_CMD=(pnpm build)
+  INSTALL_CMD=(pnpm install)
 elif command -v yarn >/dev/null 2>&1; then
+  PKG_MGR="yarn"
   BUILD_CMD=(yarn build)
+  INSTALL_CMD=(yarn install)
 else
   echo "Error: could not find npm, pnpm, or yarn in PATH."
   echo "Current PATH: $PATH"
@@ -23,6 +29,14 @@ else
 fi
 
 cd "$BLOG_APP_DIR"
+
+# If dependencies are missing, install them automatically.
+if [ ! -x "$BLOG_APP_DIR/node_modules/.bin/astro" ]; then
+  echo "astro binary not found under blog-app/node_modules/.bin/."
+  echo "Installing blog dependencies with $PKG_MGR..."
+  "${INSTALL_CMD[@]}"
+fi
+
 "${BUILD_CMD[@]}"
 
 rm -rf "$TARGET_BLOG_DIR"
