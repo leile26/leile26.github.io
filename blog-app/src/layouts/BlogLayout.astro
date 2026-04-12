@@ -1,19 +1,9 @@
 ---
-import fs from 'node:fs';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
 const frontmatter = Astro.props.frontmatter ?? Astro.props;
 const { title, description, pubDate, tags = [], lang = 'en', alternate = '' } = frontmatter;
 const normalizedPubDate = pubDate ? new Date(pubDate) : null;
-
-const currentDir = path.dirname(fileURLToPath(import.meta.url));
-const blogDir = path.resolve(currentDir, '../pages/blog');
 const normalizedAlternate = typeof alternate === 'string' ? alternate.trim() : '';
-const alternateSlug = normalizedAlternate
-  ? normalizedAlternate.replace(/^\/blog\//, '').replace(/\/$/, '')
-  : '';
-const hasAlternate = alternateSlug ? fs.existsSync(path.join(blogDir, `${alternateSlug}.md`)) : false;
+const hasAlternate = normalizedAlternate.length > 0;
 const currentLang = lang === 'zh' ? '中文' : 'EN';
 const otherLang = lang === 'zh' ? 'EN' : '中文';
 ---
