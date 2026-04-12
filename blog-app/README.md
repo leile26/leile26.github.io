@@ -209,6 +209,14 @@ Use this when you want to start writing but do **not** want the post to appear p
 ./list-drafts.sh
 ```
 
+## 2b. List published posts
+
+```bash
+./list-posts.sh
+```
+
+Use this when you want to confirm which posts are already in `src/pages/blog/` and should appear in the blog.
+
 ---
 
 ## 3. Publish a draft
@@ -564,6 +572,7 @@ blog-app/dist/
 ## Scripts
 - `new-draft.sh` — create a draft
 - `list-drafts.sh` — list drafts
+- `list-posts.sh` — list published posts
 - `publish-post.sh` — move draft to published
 - `unpublish-post.sh` — move published post back to drafts
 - `remove-post.sh` — delete a post entirely
