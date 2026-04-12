@@ -2,7 +2,7 @@
   const sidebar = document.querySelector('header');
   if (!sidebar) return;
 
-  const desktopLike = window.matchMedia('(min-width: 961px) and (hover: hover) and (pointer: fine)');
+  const desktopLike = window.matchMedia('(min-width: 961px)');
 
   function onWheel(event) {
     if (!desktopLike.matches) return;
