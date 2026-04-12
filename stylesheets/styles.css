@@ -87,6 +87,8 @@ a:hover {
 header {
   position: sticky;
   top: 28px;
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
   background: linear-gradient(180deg, rgba(255,255,255,0.99), rgba(248, 252, 255, 0.94));
   border: 1px solid rgba(59, 130, 246, 0.14);
   border-radius: 24px;
@@ -103,6 +105,15 @@ header img {
   margin-bottom: 20px;
   border: 1px solid rgba(59, 130, 246, 0.12);
   box-shadow: 0 16px 34px rgba(37, 99, 235, 0.08);
+}
+
+header::-webkit-scrollbar {
+  width: 8px;
+}
+
+header::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.18);
+  border-radius: 999px;
 }
 
 .hero-role {
