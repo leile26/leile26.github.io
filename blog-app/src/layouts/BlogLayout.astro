@@ -3,7 +3,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const { title, description, pubDate, tags = [], lang = 'en', alternate = '' } = Astro.props;
+const frontmatter = Astro.props.frontmatter ?? Astro.props;
+const { title, description, pubDate, tags = [], lang = 'en', alternate = '' } = frontmatter;
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 const blogDir = path.resolve(currentDir, '../pages/blog');
