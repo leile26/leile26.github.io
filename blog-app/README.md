@@ -289,6 +289,8 @@ Run it when you want to:
 ./scripts-sync-blog.sh
 ```
 
+If your shell reports `npm: command not found`, the script now also tries `pnpm` and `yarn`, and prints a clearer PATH-related error if no package manager is available.
+
 ---
 
 ## When you do not have to run it manually
