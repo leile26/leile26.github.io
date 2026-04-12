@@ -43,4 +43,6 @@ rm -rf "$TARGET_BLOG_DIR"
 mkdir -p "$TARGET_BLOG_DIR"
 cp -R "$DIST_BLOG_DIR/"* "$TARGET_BLOG_DIR/"
 
+node "$BLOG_APP_DIR/scripts-update-homepage-writing.mjs" "$ROOT_DIR"
+
 echo "Synced Astro blog output to $TARGET_BLOG_DIR"

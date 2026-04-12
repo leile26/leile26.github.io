@@ -117,6 +117,8 @@ It builds Astro and copies the generated static result into the repo root:
 
 Use this when you want to update the root-site blog output that GitHub Pages publishes.
 
+It also refreshes the homepage Writing section so the root homepage stays in sync with the latest published blog posts.
+
 If you want to preview the root-site output locally in one step, use:
 
 ```bash
@@ -126,8 +128,9 @@ If you want to preview the root-site output locally in one step, use:
 That will:
 
 1. run `./scripts-sync-blog.sh`
-2. start a static server from the repo root
-3. let you open:
+2. refresh the homepage Writing section
+3. start a static server from the repo root
+4. let you open:
    - `http://127.0.0.1:8000/`
    - `http://127.0.0.1:8000/blog/`
 
@@ -156,7 +159,7 @@ For bilingual writing, the recommended pattern is:
 - `my-post.md` for English
 - `my-post.zh.md` for Chinese
 
-The archive currently treats English as the primary list and shows posts with `lang: en`.
+The archive currently treats English as the primary list and shows the English source files in `src/pages/blog/` (for example `my-post.md`, not `my-post.zh.md`).
 Chinese versions are still published as separate pages and linked from the post page.
 Language switches are shown only when the alternate file actually exists.
 
