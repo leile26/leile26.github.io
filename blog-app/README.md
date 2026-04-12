@@ -117,6 +117,20 @@ It builds Astro and copies the generated static result into the repo root:
 
 Use this when you want to update the root-site blog output that GitHub Pages publishes.
 
+If you want to preview the root-site output locally in one step, use:
+
+```bash
+./preview-site.sh
+```
+
+That will:
+
+1. run `./scripts-sync-blog.sh`
+2. start a static server from the repo root
+3. let you open:
+   - `http://127.0.0.1:8000/`
+   - `http://127.0.0.1:8000/blog/`
+
 ## Important difference
 
 - `npm run dev` = preview Astro source directly
