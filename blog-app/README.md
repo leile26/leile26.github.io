@@ -79,6 +79,53 @@ Then open:
 
 ---
 
+# Two different preview modes
+
+This project currently has **two different ways** to look at the blog locally.
+
+## Mode 1: Astro dev preview
+
+Run:
+
+```bash
+cd blog-app
+npm run dev
+```
+
+Then open:
+
+- `http://127.0.0.1:4321/blog/`
+
+This preview reads directly from:
+
+- `blog-app/src/pages/blog/`
+
+Use this while writing and editing.
+
+## Mode 2: Synced root-site output
+
+Run:
+
+```bash
+./scripts-sync-blog.sh
+```
+
+This does **not** start a preview server.
+It builds Astro and copies the generated static result into the repo root:
+
+- `../blog/`
+
+Use this when you want to update the root-site blog output that GitHub Pages publishes.
+
+## Important difference
+
+- `npm run dev` = preview Astro source directly
+- `./scripts-sync-blog.sh` = build and sync the final static output
+
+So it is normal for `./scripts-sync-blog.sh` to succeed without changing what an already-running preview server is showing.
+
+---
+
 # The main idea
 
 ## Published posts
