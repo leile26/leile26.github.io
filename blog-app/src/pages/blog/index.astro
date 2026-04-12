@@ -82,7 +82,26 @@ const posts = fs
       .hero h1 { font-weight: 800; }
       .card { margin-bottom: 18px; }
       .meta { color: var(--muted); font-size: 14px; }
-      .lang-note { margin-top: 10px; color: var(--muted); font-size: 14px; }
+      .lang-row {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .lang-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: rgba(37, 99, 235, 0.08);
+        border: 1px solid rgba(37, 99, 235, 0.12);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+      .lang-note { color: var(--muted); font-size: 14px; }
       .card p, .hero p { color: #334155; }
       a { color: var(--primary); text-decoration: none; }
       a:hover { color: var(--primary-strong); }
@@ -105,7 +124,10 @@ const posts = fs
             {post.tags.length ? ` · ${post.tags.join(' · ')}` : ''}
           </div>
           <p>{post.description}</p>
-          {post.hasAlternate && <div class="lang-note">Chinese version available</div>}
+          <div class="lang-row">
+            <span class="lang-badge">EN</span>
+            {post.hasAlternate && <div class="lang-note">中文版本可用</div>}
+          </div>
         </div>
       )) : (
         <div class="card">
