@@ -25,7 +25,7 @@ const posts = fs.readdirSync(blogDir)
   .sort((a, b) => (b.pubDate?.getTime() ?? 0) - (a.pubDate?.getTime() ?? 0));
 
 const cards = posts.length > 0
-  ? posts.slice(0, 2).map((post) => {
+  ? posts.slice(0, 3).map((post) => {
       const dateText = post.pubDate
         ? post.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
         : '';
