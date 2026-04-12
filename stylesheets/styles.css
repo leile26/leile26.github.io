@@ -89,6 +89,7 @@ header {
   top: 28px;
   max-height: calc(100vh - 56px);
   overflow-y: auto;
+  overscroll-behavior: contain;
   background: linear-gradient(180deg, rgba(255,255,255,0.99), rgba(248, 252, 255, 0.94));
   border: 1px solid rgba(59, 130, 246, 0.14);
   border-radius: 24px;
