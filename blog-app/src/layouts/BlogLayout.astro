@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const frontmatter = Astro.props.frontmatter ?? Astro.props;
 const { title, description, pubDate, tags = [], lang = 'en', alternate = '' } = frontmatter;
+const normalizedPubDate = pubDate ? new Date(pubDate) : null;
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 const blogDir = path.resolve(currentDir, '../pages/blog');
@@ -140,7 +141,7 @@ const otherLang = lang === 'zh' ? 'EN' : '中文';
       <div class="nav"><a href="/">← Homepage</a> · <a href="/blog/">Archive</a></div>
       <div class="card">
         <h1>{title}</h1>
-        <div class="meta">{pubDate?.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+        <div class="meta">{normalizedPubDate?.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</div>
         {tags.length > 0 && <div class="tags">{tags.join(' · ')}</div>}
         {hasAlternate && (
           <div class="lang-switch">
