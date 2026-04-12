@@ -19,6 +19,7 @@ const posts = fs
     return {
       title: data.title ?? slug,
       url: `/blog/${slug}/`,
+      zhUrl: `/blog/${zhSlug}/`,
       pubDate: data.pubDate ? new Date(data.pubDate) : null,
       tags: Array.isArray(data.tags) ? data.tags : [],
       description: data.description ?? '',
@@ -102,6 +103,10 @@ const posts = fs
         letter-spacing: 0.04em;
       }
       .lang-note { color: var(--muted); font-size: 14px; }
+      .lang-note a {
+        color: var(--primary);
+        font-weight: 600;
+      }
       .card p, .hero p { color: #334155; }
       a { color: var(--primary); text-decoration: none; }
       a:hover { color: var(--primary-strong); }
@@ -126,7 +131,7 @@ const posts = fs
           <p>{post.description}</p>
           <div class="lang-row">
             <span class="lang-badge">EN</span>
-            {post.hasAlternate && <div class="lang-note">中文版本可用</div>}
+            {post.hasAlternate && <div class="lang-note"><a href={post.zhUrl}>查看中文版</a></div>}
           </div>
         </div>
       )) : (
