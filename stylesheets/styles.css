@@ -98,6 +98,14 @@ header {
   backdrop-filter: blur(16px);
 }
 
+@media print, screen and (max-width: 960px) {
+  header {
+    max-height: none;
+    overflow: visible;
+    overscroll-behavior: auto;
+  }
+}
+
 header img {
   width: 100%;
   aspect-ratio: 1 / 1;
