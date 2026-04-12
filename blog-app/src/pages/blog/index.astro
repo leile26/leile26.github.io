@@ -1,23 +1,20 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
 import matter from 'gray-matter';
 
-const currentDir = path.dirname(fileURLToPath(import.meta.url));
-const blogDir = currentDir;
+const blogDir = path.resolve(process.cwd(), 'src/pages/blog');
 
 const posts = fs
   .readdirSync(blogDir)
-  .filter((file) => file.endsWith('.md'))
+  .filter((file) => file.endsWith('.md') && !file.endsWith('.zh.md'))
   .map((file) => {
     const fullPath = path.join(blogDir, file);
     const raw = fs.readFileSync(fullPath, 'utf-8');
     const { data } = matter(raw);
     const slug = file.replace(/\.md$/, '');
-    const alternate = typeof data.alternate === 'string' ? data.alternate.trim() : '';
-    const alternateSlug = alternate ? alternate.replace(/^\/blog\//, '').replace(/\/$/, '') : '';
-    const hasAlternate = alternateSlug ? fs.existsSync(path.join(blogDir, `${alternateSlug}.md`)) : false;
+    const zhSlug = `${slug}.zh`;
+    const hasAlternate = fs.existsSync(path.join(blogDir, `${zhSlug}.md`));
 
     return {
       title: data.title ?? slug,
@@ -25,12 +22,9 @@ const posts = fs
       pubDate: data.pubDate ? new Date(data.pubDate) : null,
       tags: Array.isArray(data.tags) ? data.tags : [],
       description: data.description ?? '',
-      lang: data.lang ?? 'en',
-      alternate,
       hasAlternate,
     };
   })
-  .filter((post) => post.lang === 'en')
   .sort((a, b) => (b.pubDate?.getTime() ?? 0) - (a.pubDate?.getTime() ?? 0));
 ---
 
