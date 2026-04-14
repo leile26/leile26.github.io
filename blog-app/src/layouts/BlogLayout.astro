@@ -133,6 +133,17 @@ const otherLang = lang === 'zh' ? 'EN' : '中文';
       article em {
         color: var(--muted);
       }
+      .katex-display {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        padding: 0.25rem 0;
+      }
+      .katex-display > .katex {
+        display: inline-block;
+        min-width: max-content;
+      }
       pre {
         overflow-x: auto;
         padding: 16px;
