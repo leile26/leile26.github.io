@@ -111,10 +111,16 @@ const otherLang = lang === 'zh' ? 'EN' : '中文';
         color: var(--primary);
         background: rgba(37,99,235,0.06);
       }
-      article { margin-top: 28px; }
+      article {
+        margin-top: 28px;
+        overflow-x: hidden;
+      }
       article p, article li { color: #334155; }
-      article img {
-        max-width: 100%;
+      article img,
+      article picture,
+      article svg {
+        max-width: min(92%, 760px);
+        width: 100%;
         height: auto;
         display: block;
         margin: 1.5rem auto;
