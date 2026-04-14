@@ -113,6 +113,20 @@ const otherLang = lang === 'zh' ? 'EN' : '中文';
       }
       article { margin-top: 28px; }
       article p, article li { color: #334155; }
+      article img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1.5rem auto;
+        border-radius: 16px;
+      }
+      article p + img,
+      article img + p {
+        margin-top: 1rem;
+      }
+      article em {
+        color: var(--muted);
+      }
       pre {
         overflow-x: auto;
         padding: 16px;
