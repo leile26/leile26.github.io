@@ -115,10 +115,11 @@ const otherLang = lang === 'zh' ? 'EN' : '中文';
         margin-top: 28px;
         overflow-x: hidden;
       }
-      article p, article li { color: #334155; }
-      article img,
-      article picture,
-      article svg {
+      article :global(p),
+      article :global(li) { color: #334155; }
+      article :global(img),
+      article :global(picture),
+      article :global(svg) {
         max-width: min(92%, 760px);
         width: 100%;
         height: auto;
@@ -126,21 +127,21 @@ const otherLang = lang === 'zh' ? 'EN' : '中文';
         margin: 1.5rem auto;
         border-radius: 16px;
       }
-      article p + img,
-      article img + p {
+      article :global(p + img),
+      article :global(img + p) {
         margin-top: 1rem;
       }
-      article em {
+      article :global(em) {
         color: var(--muted);
       }
-      .katex-display {
+      article :global(.katex-display) {
         max-width: 100%;
         overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         padding: 0.25rem 0;
       }
-      .katex-display > .katex {
+      article :global(.katex-display > .katex) {
         display: inline-block;
         min-width: max-content;
       }
